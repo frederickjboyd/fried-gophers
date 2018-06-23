@@ -1,0 +1,20 @@
+# Gopkg.toml example
+#
+# Refer to https://github.com/golang/dep/blob/master/docs/Gopkg.toml.md
+# for detailed Gopkg.toml documentation.
+#
+# [prune]
+#   non-go = false
+#   go-tests = true
+#   unused-packages = true
+
+
+[prune]
+  go-tests = true
+  unused-packages = true
+
+[[constraint]]
+  name = "github.com/anthonynsimon/bild"
+  version = "0.10.0"
+  branch = "master"
+  revision = "5830d8b"
