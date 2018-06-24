@@ -16,8 +16,7 @@ var opts struct {
 var args []string
 
 func main() {
-	log.Printf("fried-gophers is live!\nWas given the following command line "+
-		"arguments: %v", args)
+	openImage(args[0])
 }
 
 // init is automatically called upon program / package startup, before even
@@ -25,11 +24,13 @@ func main() {
 //
 // Perform initialization actions here.
 func init() {
-	// Parse command line flags
-	args = parseFlags()
+	// Setup internal logger, do not log time data
+	log.SetFlags(0)
 
-	// Setup internal logger
-	log.SetFlags(0) // Do not log time information
+	// Parse command line flags
+	if args = parseFlags(); len(args) == 0 {
+		log.Fatal("Expected an file path argument; received none.")
+	}
 }
 
 // parseFlags reads command line flags into 'data', and returns the remaining
