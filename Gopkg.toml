@@ -13,8 +13,10 @@
   go-tests = true
   unused-packages = true
 
+# [[constraint]]
+#   name = "github.com/anthonynsimon/bild"
+#   version = "0.10.0"
+
 [[constraint]]
-  name = "github.com/anthonynsimon/bild"
-  version = "0.10.0"
-  branch = "master"
-  revision = "5830d8b"
+  name = "github.com/jessevdk/go-flags"
+  version = "v1.4.0"
