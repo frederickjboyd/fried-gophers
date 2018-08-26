@@ -29,3 +29,6 @@ Thumbs.db
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+## Images generated from testing
+*.jpg

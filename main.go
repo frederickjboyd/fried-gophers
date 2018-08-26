@@ -9,14 +9,24 @@ import (
 // opts is a struct of expected command line flags that are parsed upon
 // startup.
 var opts struct {
-	verbose bool `short:"v" long:"verbose" description:"Show verbose debug information" default:"false"`
+	Verbose bool `short:"v" long:"verbose" description:"Show verbose debug information"`
 }
 
 // args is an array of command line arguments that are parsed upon startup.
 var args []string
 
 func main() {
-	openImage(args[0])
+	args := parseFlags()
+	verbose := opts.Verbose
+	if verbose {
+		log.Printf("arguments: %s", args)
+	}
+	img, format := openImage(args[0])
+	log.Printf("Format: %s", format)
+	friedImg := adjustSaturation(img, 5)
+	noiseImg := genNoise()
+	writeImage(friedImg, "deep-fried-image.jpg")
+	writeImage(noiseImg, "noise.jpg")
 }
 
 // init is automatically called upon program / package startup, before even
@@ -37,6 +47,16 @@ func init() {
 // args.
 func parseFlags() (args []string) {
 	var err error
+	// arguments := []string{
+	// 	"-v",
+	// 	"-o", "file.exe",
+	// 	"-s", "hello",
+	// 	"-s", "world",
+	// }
+	// for i := 0; i < len(arguments); i++ {
+	// 	log.Println(arguments[i])
+	// }
+	// args, err = flags.ParseArgs(&opts, arguments)
 	args, err = flags.Parse(&opts)
 	if err != nil {
 		flagErr := err.(*flags.Error)

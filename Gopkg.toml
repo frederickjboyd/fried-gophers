@@ -13,9 +13,9 @@
   go-tests = true
   unused-packages = true
 
-# [[constraint]]
-#   name = "github.com/anthonynsimon/bild"
-#   version = "0.10.0"
+[[constraint]]
+  name = "github.com/anthonynsimon/bild"
+  version = "0.10.0"
 
 [[constraint]]
   name = "github.com/jessevdk/go-flags"
