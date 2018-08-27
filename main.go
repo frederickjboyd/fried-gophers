@@ -9,7 +9,9 @@ import (
 // opts is a struct of expected command line flags that are parsed upon
 // startup.
 var opts struct {
-	Verbose bool `short:"v" long:"verbose" description:"Show verbose debug information"`
+	Verbose    bool    `short:"v" long:"verbose" description:"Show verbose debug information"`
+	Output     string  `short:"o" long:"output" description:"Rename file output name"`
+	Saturation float64 `short:"s" long:"saturation" description:"Adjust saturation of output" default:"5"`
 }
 
 // args is an array of command line arguments that are parsed upon startup.
@@ -17,16 +19,21 @@ var args []string
 
 func main() {
 	args := parseFlags()
-	verbose := opts.Verbose
-	if verbose {
-		log.Printf("arguments: %s", args)
-	}
 	img, format := openImage(args[0])
-	log.Printf("Format: %s", format)
-	friedImg := adjustSaturation(img, 5)
-	noiseImg := genNoise()
-	writeImage(friedImg, "deep-fried-image.jpg")
-	writeImage(noiseImg, "noise.jpg")
+	if verbose := opts.Verbose; verbose {
+		log.Printf("arguments: %s", args)
+		log.Printf("output: %s", opts.Output)
+		log.Printf("saturation: %f", opts.Saturation)
+		log.Printf("input image format: %s", format)
+	}
+	friedImg := adjustSaturation(img, opts.Saturation)
+	// noiseImg := genNoise()
+	if outputLength := len(opts.Output); outputLength > 0 {
+		writeImage(friedImg, opts.Output+".jpg")
+	} else {
+		writeImage(friedImg, "deep-fried.jpg")
+	}
+	// writeImage(noiseImg, "noise.jpg")
 }
 
 // init is automatically called upon program / package startup, before even
