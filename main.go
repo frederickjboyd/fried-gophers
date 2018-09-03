@@ -10,10 +10,10 @@ import (
 // startup.
 var opts struct {
 	Verbose    bool    `short:"v" long:"verbose" description:"Show verbose debug information"`
-	Directory  string  `short:"d" long:"dir" description:"Directory to write image to (writes to target image directory by default)"`
+	Directory  string  `short:"d" long:"dir" description:"Directory to write image to - writes to target image directory by default"`
 	Output     string  `short:"o" long:"output" description:"Rename file output name" default:"deep-fried"`
-	Saturation float64 `short:"s" long:"saturation" description:"Adjust saturation of output" default:"50"`
-	Quality    int     `short:"q" long:"quality" description:"Adjust quality of output" default:"5"`
+	Saturation float64 `short:"s" long:"saturation" description:"Adjust saturation of output - larger numbers correspond to more saturation" default:"50"`
+	Quality    int     `short:"q" long:"quality" description:"Adjust quality of output - smaller numbers correspond to lower quality" default:"5"`
 }
 
 // args is an array of command line arguments that are parsed upon startup.
