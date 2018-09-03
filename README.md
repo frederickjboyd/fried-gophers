@@ -12,9 +12,9 @@ go get https://github.com/frederickjboyd/fried-gophers
 
 ## Example
 
-| Before                                   | After                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| [Imgur](https://i.imgur.com/scU2Dhc.jpg) | [Imgur](https://i.imgur.com/nWq2n4H.jpg) |
+| Before                                                         | After                                                         |
+| -------------------------------------------------------------- | ------------------------------------------------------------- |
+| ![Imgur](https://i.imgur.com/scU2Dhc.jpg "Before deep frying") | ![Imgur](https://i.imgur.com/nWq2n4H.jpg "After deep frying") |
 
 ## Usage
 
@@ -27,8 +27,8 @@ To view all flags and their descriptions, run:
 ### Compatibility
 
 `fried-gophers` should work on Windows, OS X, and Linux. Preliminary tests have
-only been done on Windows and Linux, but more rigorous testing will be done in
-the near future.
+been done on Windows and Linux, but more rigorous testing will be done in the
+near future.
 
 #### Supported Image Formats:
 
