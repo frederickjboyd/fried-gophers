@@ -23,7 +23,6 @@ func openImage(path string) (img image.Image, format string) {
 func writeImage(img image.Image, name string, dir string, quality int) {
 	if len(dir) == 0 {
 		dir = filepath.Dir(args[0])
-		log.Println(dir)
 	}
 	if opts.Verbose {
 		log.Printf("writing to %s", dir)

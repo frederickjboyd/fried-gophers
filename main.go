@@ -23,9 +23,9 @@ func main() {
 	args := parseFlags()
 	img, format := openImage(args[0])
 	if opts.Verbose {
-		log.Printf("target image: %s", args)
+		log.Printf("target image: %s", args[0])
 		log.Printf("image format: %s", format)
-		log.Printf("output: %s", opts.Output)
+		log.Printf("output file name: %s", opts.Output)
 		log.Printf("saturation: %f", opts.Saturation)
 		log.Printf("quality: %d", opts.Quality)
 	}
