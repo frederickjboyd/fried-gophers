@@ -10,8 +10,10 @@ import (
 // startup.
 var opts struct {
 	Verbose    bool    `short:"v" long:"verbose" description:"Show verbose debug information"`
-	Output     string  `short:"o" long:"output" description:"Rename file output name"`
-	Saturation float64 `short:"s" long:"saturation" description:"Adjust saturation of output" default:"5"`
+	Directory  string  `short:"d" long:"dir" description:"Directory to write image to (writes to target image directory by default)"`
+	Output     string  `short:"o" long:"output" description:"Rename file output name" default:"deep-fried"`
+	Saturation float64 `short:"s" long:"saturation" description:"Adjust saturation of output" default:"50"`
+	Quality    int     `short:"q" long:"quality" description:"Adjust quality of output" default:"5"`
 }
 
 // args is an array of command line arguments that are parsed upon startup.
@@ -20,19 +22,17 @@ var args []string
 func main() {
 	args := parseFlags()
 	img, format := openImage(args[0])
-	if verbose := opts.Verbose; verbose {
-		log.Printf("arguments: %s", args)
+	if opts.Verbose {
+		log.Printf("target image: %s", args)
+		log.Printf("image format: %s", format)
 		log.Printf("output: %s", opts.Output)
 		log.Printf("saturation: %f", opts.Saturation)
-		log.Printf("input image format: %s", format)
+		log.Printf("quality: %d", opts.Quality)
 	}
 	friedImg := adjustSaturation(img, opts.Saturation)
+	writeImage(friedImg, opts.Output+".jpg", opts.Directory, opts.Quality)
+
 	// noiseImg := genNoise()
-	if outputLength := len(opts.Output); outputLength > 0 {
-		writeImage(friedImg, opts.Output+".jpg")
-	} else {
-		writeImage(friedImg, "deep-fried.jpg")
-	}
 	// writeImage(noiseImg, "noise.jpg")
 }
 
@@ -54,16 +54,6 @@ func init() {
 // args.
 func parseFlags() (args []string) {
 	var err error
-	// arguments := []string{
-	// 	"-v",
-	// 	"-o", "file.exe",
-	// 	"-s", "hello",
-	// 	"-s", "world",
-	// }
-	// for i := 0; i < len(arguments); i++ {
-	// 	log.Println(arguments[i])
-	// }
-	// args, err = flags.ParseArgs(&opts, arguments)
 	args, err = flags.Parse(&opts)
 	if err != nil {
 		flagErr := err.(*flags.Error)

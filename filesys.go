@@ -5,6 +5,7 @@ import (
 	"image/jpeg"
 	"log"
 	"os"
+	"path/filepath"
 )
 
 func openImage(path string) (img image.Image, format string) {
@@ -19,12 +20,19 @@ func openImage(path string) (img image.Image, format string) {
 	return
 }
 
-func writeImage(img image.Image, name string) {
-	file, err := os.Create(name)
+func writeImage(img image.Image, name string, dir string, quality int) {
+	if len(dir) == 0 {
+		dir = filepath.Dir(args[0])
+		log.Println(dir)
+	}
+	if opts.Verbose {
+		log.Printf("writing to %s", dir)
+	}
+	file, err := os.Create(filepath.Join(dir, filepath.Base(name)))
 	if err != nil {
 		log.Fatalf("Unable to create new file: %v", err)
 	}
-	jpeg.Encode(file, img, nil)
+	jpeg.Encode(file, img, &jpeg.Options{Quality: quality})
 }
 
 // Creates a test image with name "name" and dimensions x by y
