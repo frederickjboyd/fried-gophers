@@ -12,6 +12,8 @@ go get https://github.com/frederickjboyd/fried-gophers
 
 ## Example
 
+Using default values:
+
 | Before                                                         | After                                                         |
 | -------------------------------------------------------------- | ------------------------------------------------------------- |
 | ![Imgur](https://i.imgur.com/scU2Dhc.jpg "Before deep frying") | ![Imgur](https://i.imgur.com/nWq2n4H.jpg "After deep frying") |
