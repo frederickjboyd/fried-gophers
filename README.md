@@ -36,7 +36,8 @@ near future.
 
 - JPEG
 
-## Upcoming Features
+## Todo
 
-- Deep frying multiple images in the same directory simultaneously
+- Support deep frying multiple images in the same directory simultaneously
 - Support for additional image formats (e.g. PNG)
+- Verify Go 11 support
